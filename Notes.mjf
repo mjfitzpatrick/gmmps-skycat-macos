@@ -1,0 +1,240 @@
+
+=============
+TCLTK-8.6.17/
+=============
+
+itk4.2.7/itkBase.c
+    applied patch for MacOS tcl path as detailed in 
+        https://bugzilla.redhat.com/show_bug.cgi?id=1105506
+    fixed 'not found' error from "package require Itk" in skycat
+
+blt2.4/configre.in
+blt2.4/src/Makefile
+    replaced "-O6' with '-O3', added '-w' to CFLAGS to supress warnings
+        about missing prototype decls
+
+blt2.4/src/bltNsUtil.h
+    proto decl changes to match tclDecls.h for v8.6.17
+
+blt2.4/src/bltVecMath.c
+blt2.4/src/bltScrollbar.c
+    changed to use "Tcl_GetStringResult(interp)" for "interp->result"
+
+blt2.4/src/bltTed.c
+    used Tcl_SetObjResult() to set result string
+
+blt2.4/src/bltCanvEps.c
+    type cast to Tk_CanvasTagsParseProc
+
+blt2.4/src/bltTreeViewStyle.c
+    ansi decl for Blt_TreeViewTextbox()
+
+blt2.4/src/tkButton.c
+    Replaced the obsolete TkCopyAndGlobalEval() code
+
+
+=============
+SKYCAT-3.1.4/
+=============
+
+tclutil/aclocal.m4
+    Adjusted paths for BLT library v3.2
+
+cat/VERSION --> cat/__VERSION
+plugins/graphics_features/VERSION --> plugins/graphics_features/__VERSION
+astrotcl/libwcs/VERSION --> astrotcl/libwcs/__VERSION
+astrotcl/VERSION --> astrotcl/__VERSION
+astrotcl/cfitsio/VERSION --> astrotcl/cfitsio/__VERSION
+VERSION --> __VERSION
+rtd/VERSION --> rtd/__VERSION
+skycat/VERSION --> skycat/__VERSION
+tclutil/VERSION --> tclutil/__VERSION
+    Renamed file to avoid being included in clang framework default includes
+
+tclutil/generic/ErrorHandler.C
+tclutil/generic/util.C
+tclutil/generic/TkWidget.C
+tclutil/generic/TkImage.C
+tclutil/generic/Tclutil.C
+tclutil/generic/TclCommand.C
+tclutil/generic/ShellCommand.C
+tclutil/generic/Mem.C
+tclutil/generic/Mem_Map.C
+tclutil/generic/HTTP.C
+tclutil/generic/error.C
+    removed "using namespace std" to fix warning
+
+tclutil/generic/ErrorHandler.C
+    added "std::" namespace to i/o streams
+
+tclutil/generic/TclCommand.c
+    changed sprintf() to snprintf()
+    added "std::" namespace to i/o streams
+
+tclutil/generic/error.c
+    changed vsprintf() to vsnprintf()
+    added "std::" namespace to i/o streams
+
+tclutil/bitmaps/*.xbm
+    explicit type "static unsigned char" to avoid narrowing error
+
+tclutil/generic/Tclutil.C
+    changed Blt_Init() to Tkblt_Init()
+
+tclutil/generic/Mem.C
+tclutil/generic/HTTP.C
+    fixed compiler warnings
+
+rtd/
+    Had to create a /usr/local/include/X11 -> /usr/X11R6/include/X11 symlink
+
+rtd/generic/BiasData.C
+    changed return type of BiasData::file() to NULL from '\0'
+
+rtd/generic/RtdRPFile.C
+rtd/generic/RtdPerformanceTool.C
+rtd/generic/RtdRemote.C
+rtd/generic/RtdRPTool.C
+rtd/generic/RtdUtils.C
+rtd/generic/RtdPerf.C
+rtd/generic/RtdImage.C
+rtd/generic/rtdCoords.C
+rtd/generic/RtdCmds.C
+rtd/generic/RtdCamera.C
+rtd/generic/ImageData.C
+rtd/generic/CompoundImageData.C
+    changed sprintf() to snprintf()
+
+rtd/generic/ImageData.C
+    removed 'register' declaration on line 1444
+
+rtd/generic/RtdCamera.h
+    fixed type decl for "image" in constructor
+
+rtd/generic/RtdImage.h
+    added return value for imageEvent()
+
+rtd/generic/RtdCmds.C
+    fixed snprintf() format warnings
+    fixed instances of "delete" that should be "delete[]"
+    the 'result' element of Tcl_Interp is deprecated, changed to use
+        Tcl_GetStringResult() in four instances
+
+rtd/generic/ImageTemplates.icc
+rtd/generic/LookupTable.C
+rtd/generic/ImageZoom.C
+rtd/generic/LongImageData.C
+rtd/generic/LongLongImageData.C
+    removed 'register' decls
+
+rtd/generic/LongImageData.C
+    fixed type conversions
+
+rtd/generic/RtdCmds.C
+    return 'value' in motionEvent()
+
+rtd/generic/RtdImage.C
+    added local definition for MODULE_SCOPE to address tkCanvas.h defs
+    added parenthesis for precedence evaluation
+
+rtd/generic/RtdPerf.c
+    argument type cast for Tcl_SetVar2()
+
+rtd/generic/RtdRPTool.c
+    added return value for processFileEvent()
+
+rtd/generic/RtdRemote.c
+    the 'result' element of Tcl_Interp is deprecated, changed to use
+        Tcl_GetStringResult() in four instances
+
+rtd/generic/ByteImageData.C
+rtd/generic/ColorMapInfo.*
+rtd/generic/ITTInfo.*
+rtd/generic/LongImageData.C
+rtd/generic/LongLongImageData.C
+rtd/generic/XImageData.C
+    removed "using namespace std"
+
+rtd/generic/DoubleImageData.C
+rtd/generic/FloatImageData.C
+rtd/generic/LongImageData.C
+rtd/generic/LongLongImageData.C
+    type cast LOOKUP_BLANK to fix warning
+
+rtd/generic/LookupTable.C
+    changed 'delete' to 'delete[]' on line 113
+
+rtd/generic/RtdPerformanceTool.C
+    format type change
+
+rtd/generic/RtdRPFile.C
+    replaced snprintf() with memset() to clean TSBuf array
+
+rtd/generic/*.c
+    ansi decls
+
+rtd/generic/
+ByteImageData.C ColorMapInfo.* ITTInfo.* *ImageData.C
+
+rtd/bitmaps/*.xbm
+    explicit type "static unsigned char" to avoid narrowing error
+
+rtd/generic/rtd_remote.c
+    added a <signal.h> include for kill() call
+
+rtd/rtdevt/rtdSem.c
+    added a <sys/ipc.h> and <sys/shm.h> include for shmget() call
+
+rtd/rtdevt/rtdSERVER.c
+    changed sprintf() to snprintf()
+
+rtd/rtdevt/*.c
+    added a <unistd.h> include
+
+rtd/rtdevt/rtdCubeDisplay.c
+    added 'int' type decl to main()
+
+rtd/tests/tRtdEvtTemplate.icc
+    removed unneeded abs() call line 111
+
+rtd/tests/tRtdEvt.*
+rtd/tests/tRtd.*
+    explicit name 'Opts' for strct typedef in tRtd.h
+
+
+astrotcl/generic/trigo.h
+astrotcl/generic/cotr.c
+astrotcl/generic/jprec.c
+    ansi func decls
+
+astrotcl/cfitsio/group.c
+astrotcl/cfitsio/drvrsmem.c
+astrotcl/cfitsio/drvrnet.c
+astrotcl/cfitsio/drvrfile.c
+    added a <unistd.h> include
+
+cat/generic/TclQueryUtil.C
+cat/generic/TclAstroImage.C
+    the 'result' element of Tcl_Interp is deprecated, changed to use
+        Tcl_GetStringResult() in four instances
+
+cat/bitmaps/*.xbm
+    explicit type "static unsigned char" to avoid narrowing error
+
+cat/generic/TclAstroCat.C
+cat/generic/TabTable.C
+cat/generic/AstroCatalog.C
+cat/generic/AstroImage.C
+    changed sprintf() to snprintf()
+
+cat/generic/TclAstroCat.C
+cat/generic/TabTable.C
+    fixed instances of "delete" that should be "delete[]"
+
+cat/generic/TcsQeryResult.C
+    added return value to clear()
+
+cat/generic/*.C
+cat/generic/*.h
+    added "std::" namespace to i/o streams
+

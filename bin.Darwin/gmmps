@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export LANG=en_US.UTF-8
+export GMMPS=/Users/fitz/gmmps-1.5.1-MacOS
+OPTION="-with_grid 1 -scrollbars 1 -rtd 0"
+export INTROOT=$GMMPS
+export SKYCAT_PLUGIN=$INTROOT/src/SkyCat_plugin.tcl
+export PATH=/Users/fitz/gmmps-1.5.1-MacOS/bin:$PATH
+/Users/fitz/gmmps-1.5.1-MacOS/scripts/version_check.sh /Users/fitz/gmmps-1.5.1-MacOS
+export DYLD_LIBRARY_PATH=$GMMPS/lib:/Users/fitz/gmmps-1.5.1-MacOS/lib:/usr/lib:$DYLD_LIBRARY_PATH
+export SKYCAT=/Users/fitz/gmmps-1.5.1-MacOS/bin/skycat
+$SKYCAT $OPTION $*

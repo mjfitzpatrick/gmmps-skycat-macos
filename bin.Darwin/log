@@ -1,0 +1,10 @@
+USAGE: argv[0] <params>
+USAGE: gmMakeMasks <inFilename> <outFilename> <slitWidth> <specLen> <anamorphic>, argc=1
+USAGE: gmmps_fov <inputFile> <output> <data> <pixelScale> <crpix1> <crpix2>.
+USAGE: argv[0] <params>
+USAGE: argv[0] <catalog>
+USAGE: calc_throughput <Filter> <Grating> <Instrument> <Atmosphere> 
+USAGE: ./get_OT_posangle -i INST (GMOS-N or GMOS-S or F2) -c cd11 cd12 cd21 cd22
+  USAGE: ./gemwm
+Usage: [-vbjg] file.fts ra1 dec1 sys1 ... ran decn sysn
+Usage: [-abdjgv] [-n ndec] file.fits x1 y1 ... xn yn

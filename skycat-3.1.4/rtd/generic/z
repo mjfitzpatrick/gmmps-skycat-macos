@@ -1,0 +1,22 @@
+
+int iqe (float *pfm, float *pwm, int mx, int my, float *parm, float *sdev);
+int iqebgv (float *pfm, float *pwm, int mx, int my, float *bgm, float *bgs,
+            int *nbg);
+int iqemnt (float *pfm, float *pwm, int mx, int my, float bgv, float bgs,
+            float *amm);
+void index9 (float arrin[], int indx[]);
+int estm9p (float *pfm, float *pwm, int mx, int my, int nx, int ny, float *rm,
+            float *dx, float *dy);
+int iqesec (float *pfm, float *pwm, int mx, int my, float bgv, float *est,
+            float *sec);
+int iqefit (float *pfm, float *pwm, int mx, int my, float bgv, float *est,
+            float *ap, float *cm);
+int g2einit (float *val, float *wght, int nx, int ny);
+int g2efunc (int idx, float *val, float *fval, float *psig, float *a,
+            float *dyda, int ma);
+int g2efit (float *val, float *wght, int nx, int ny, float ap[MA],
+            float cv[MA], double *pchi);
+
+static int g2efunc2 (int ndata, int npar, double *p, double *deviates,
+  double **derivs, void *d);
+
