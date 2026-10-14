@@ -74,20 +74,19 @@ cd ${GMMPS}
 
 echo " "
 echo "################################################################### "
-echo "GMMPS Installer: Installing Skycat ... "
+echo "GMMPS Installer: Installing zlib ... "
 echo "################################################################### "
 echo " "
 
-#tar xfz tarfiles/skycat-3.1.4-1.tar.gz
-cd skycat-3.1.4/
-./configure --prefix=${GMMPS}
-make all install
+#tar xfz tarfiles/zlib-1.3.2.tar.gz
+cd zlib-1.3.2/
+autoconf
+./configure prefix=${GMMPS}
+make clean
+make prefix=${GMMPS}
+make install prefix=${GMMPS}
 cd ${GMMPS}
 
-export skycatpath=${GMMPS}/lib
-export LIBRARY_PATH=${skycatpath}
-
-sleep 1
 
 ###############################################################################
 # 2: Install CFITSIO
@@ -103,10 +102,10 @@ sleep 1
 
 #tar xfz tarfiles/cfitsio-4.6.3.tar.gz
 ln -s cfitsio-4.6.3 cfitsio
-unset F77
 cd cfitsio
 
-./configure --prefix=${GMMPS} | tee cfitsio.log
+autoconf
+unset F77 && ./configure --prefix=${GMMPS} | tee cfitsio.log
 success=`grep "Congratulations, Makefile update was successful." cfitsio.log`
 if [ "${success}_A" = "_A" ]; then
     echo " "
@@ -145,6 +144,33 @@ fi
 make install
 rm cfitsio.log
 # make clean
+cd ${GMMPS}
+
+
+echo " "
+echo "################################################################### "
+echo "GMMPS Installer: Installing Skycat ... "
+echo "################################################################### "
+echo " "
+
+#tar xfz tarfiles/skycat-3.1.4-1.tar.gz
+cd skycat-3.1.4/
+autoconf
+./configure --prefix=${GMMPS} \
+    --with-tcl=${GMMPS}/tcltk-8.4.11/tcl8.4.11/unix  \
+    --with-tk=${GMMPS}/tcltk-8.4.11/tk8.4.11/unix  \
+    --with-tclinclude=${GMMPS}/include \
+    --with-tkinclude=${GMMPS}/include
+
+#./configure --prefix=${GMMPS}
+make all install
+cd ${GMMPS}
+
+ln -s lib/cat4.1.0 lib/cat              # FIXME
+
+export skycatpath=${GMMPS}/lib
+export LIBRARY_PATH=${skycatpath}
+
 
 ###############################################################################
 # 3: Install wcstools
@@ -161,7 +187,8 @@ sleep 1
 cd ${GMMPS}/wcstools-3.9.7
 make sky2xy xy2sky
 mv bin/* ${GMMPS}/bin/
-make clean
+# make clean
+cd ${GMMPS}
 
 ###############################################################################
 # 4: Setting up the system
