@@ -119,8 +119,8 @@ $(CPPEXEC_GEMWM): $(CPPOBJECTS_GEMWM) $(HEADERS)
 # gmmps_sel.c is automatically picked over gmmps_sel.cc.
 # It appears that only the -lcat4.1.0 linker flag is necessary; keep the others just in case
 gmmps_sel: gmmps_sel.o
-#	$(CXX) $(LDFLAGS) gmmps_sel.cc gmmps_sel.o -o $(BIN)/gmmps_sel -lcat4.1.0 -lastrotcl2.1.0 -ltclutil2.1.0 -lBLT24 -ltcl8.4 -ltk8.4
-	$(CXX) $(LDFLAGS) gmmps_sel.cc gmmps_sel.o -o $(BIN)/gmmps_sel -lcat4.1.0
+	$(CXX) $(LDFLAGS) gmmps_sel.cc gmmps_sel.o -o $(BIN)/gmmps_sel -lcat4.1.0 -lastrotcl2.1.0 -ltclutil2.1.0 -lBLT24 -ltcl8.4 -ltk8.4 -lpthread
+#	$(CXX) $(LDFLAGS) gmmps_sel.cc gmmps_sel.o -o $(BIN)/gmmps_sel -lcat4.1.0
 
 throughput:
 	cp $(shell pwd)/create_gemwm_input.sh ../bin/
