@@ -18,8 +18,13 @@
 #define MAX_STRLEN  256
 #define MAX_STRLEN_S "255"
 
-typedef struct ParseData_struct ParseData;
+//typedef struct ParseData_struct ParseData;
+//typedef void* yyscan_t;
+/* An opaque pointer. */
+#ifndef YY_TYPEDEF_YY_SCANNER_T
+#define YY_TYPEDEF_YY_SCANNER_T
 typedef void* yyscan_t;
+#endif
 #ifndef FFBISON
 #include "eval_tab.h"
 #endif
