@@ -185,6 +185,7 @@ echo " "
 sleep 1
 
 cd ${GMMPS}/wcstools-3.9.7
+rm -f bin && ln -s ../bin bin
 make sky2xy xy2sky
 mv bin/* ${GMMPS}/bin/
 # make clean
